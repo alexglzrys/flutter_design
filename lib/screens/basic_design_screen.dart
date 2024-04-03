@@ -13,7 +13,9 @@ class BasicDesignScreen extends StatelessWidget {
             image: AssetImage('assets/images/banner.jpg'),
           ),
           // Titulos de Cabecera
-          _HeaderTile()
+          _HeaderTile(),
+          // Botonera de acciones
+          _ActionButtons(),
         ],
       ),
     );
@@ -32,7 +34,7 @@ class _HeaderTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(16.0),
+      padding: const EdgeInsets.only(top: 18, left: 25, right: 25, bottom: 10),
       child: const Row(
         children: [
           // Expanded se utiliza para expandir un widget hijo dentro de un Row, Column o Flex para ocupar el espacio disponible en el eje principal.
@@ -60,6 +62,93 @@ class _HeaderTile extends StatelessWidget {
           ),
           Text('1582')
         ],
+      ),
+    );
+  }
+}
+
+// Widget encargado de mostrar la sección de botones de acción
+class _ActionButtons extends StatelessWidget {
+  const _ActionButtons({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 25),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          _IconTextButton(
+            title: 'Llamar',
+            icon: Icons.call,
+            function: () {
+              print('llamar a atención a clientes');
+            },
+          ),
+          _IconTextButton(
+            title: 'Ruta',
+            icon: Icons.near_me,
+            function: () {
+              print('Trazar ruta');
+            },
+          ),
+          _IconTextButton(
+            title: 'Compartir',
+            icon: Icons.share,
+            function: () {
+              print('compartir');
+            },
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+// Widget para mostar un botón personalizado que contenga un icono y un texto en sentido vertical
+class _IconTextButton extends StatelessWidget {
+  const _IconTextButton({
+    super.key,
+    required this.title,
+    required this.icon,
+    required this.function,
+  });
+  // Este widget requiere el texto, icono y la función a ejecutar cuando se haga tap o click en el
+  final String title;
+  final IconData icon;
+  final Function function;
+
+  @override
+  Widget build(BuildContext context) {
+    // InkWell proporciona un efecto de "splash" cuando se toca, similar al comportamiento de los botones estándar de Flutter.
+    // Sirve principalmente para proporcionar retroalimentación táctil visual a los usuarios cuando interactúan con un área determinada de la UI
+    // También puede manejar gestos como onTap, onDoubleTap, onLongPress, etc., para permitir acciones específicas cuando se toca el área.
+    // Para el caso de este ejemplo, se requiere que todo el contenido de la columna reaccione al gesto tap y se ejecute una determianda acción
+    return InkWell(
+      borderRadius: BorderRadius.circular(50),
+      // Acciones a ejecutar cuando se hace tap
+      onTap: () => function(),
+      // Se recomienda envolver los widgets en Containers para sumarles, márgen, padding, color de fondo, etc.
+      child: Container(
+        width: 75,
+        height: 75,
+        padding: const EdgeInsets.all(2.0),
+        // Mostrar los elementos visuales de este widget en sentido vertical
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              icon,
+              color: Colors.blue,
+              size: 28,
+            ),
+            const SizedBox(height: 5),
+            Text(
+              title,
+              style: const TextStyle(color: Colors.blue, fontSize: 14),
+            )
+          ],
+        ),
       ),
     );
   }
