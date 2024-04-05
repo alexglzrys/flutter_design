@@ -10,6 +10,9 @@ class CompositionDesignScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
+      // Fixbug: Caundo se aplica un efecto blur, y existe un bottomNavigationBar,
+      // se muestra una linea en la parte inferior que se corresponde con el color de fondo de la pantalla.
+      backgroundColor: Color(0xff202333),
       body: Stack(children: [
         // Background
         Background(),
