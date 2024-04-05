@@ -1,4 +1,5 @@
 import 'package:design_flutter_app/widgets/background.dart';
+import 'package:design_flutter_app/widgets/custom_navigation_bar.dart';
 import 'package:design_flutter_app/widgets/page_title.dart';
 import 'package:flutter/material.dart';
 
@@ -14,6 +15,7 @@ class CompositionDesignScreen extends StatelessWidget {
         // Body
         _HomeBody()
       ]),
+      bottomNavigationBar: CustomNavigationBar(),
     );
   }
 }
