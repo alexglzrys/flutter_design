@@ -1,4 +1,5 @@
 import 'package:design_flutter_app/widgets/background.dart';
+import 'package:design_flutter_app/widgets/card_table.dart';
 import 'package:design_flutter_app/widgets/custom_navigation_bar.dart';
 import 'package:design_flutter_app/widgets/page_title.dart';
 import 'package:flutter/material.dart';
@@ -32,9 +33,13 @@ class _HomeBody extends StatelessWidget {
     return const SafeArea(
         child: SingleChildScrollView(
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // PageTitle
           PageTitle(),
+          SizedBox(height: 10),
+          // Card Table
+          CardTable(),
         ],
       ),
     ));
